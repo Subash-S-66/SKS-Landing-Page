@@ -10,6 +10,7 @@ const { getProjects, createProject, updateProject, deleteProject } = require('..
 const { getTestimonials, createTestimonial, updateTestimonial, deleteTestimonial } = require('../controllers/testimonialController');
 const { createEnquiry, getEnquiries, updateEnquiryStatus, deleteEnquiry } = require('../controllers/enquiryController');
 const { getSettings, updateSettings } = require('../controllers/settingController');
+const { getFaqs, createFaq, updateFaq, deleteFaq } = require('../controllers/faqController');
 
 // Auth routes
 router.post('/admin/login', loginLimiter, login);
@@ -20,6 +21,7 @@ router.get('/services', publicLimiter, getServices);
 router.get('/projects', publicLimiter, getProjects);
 router.get('/testimonials', publicLimiter, getTestimonials);
 router.get('/settings', publicLimiter, getSettings);
+router.get('/faqs', publicLimiter, getFaqs);
 router.post('/enquiries', publicLimiter, createEnquiry);
 
 // Protected Admin Routes
@@ -42,6 +44,9 @@ router.patch('/admin/enquiries/:id', updateEnquiryStatus);
 router.delete('/admin/enquiries/:id', deleteEnquiry);
 
 router.put('/admin/settings', updateSettings);
+router.post('/admin/faqs', createFaq);
+router.put('/admin/faqs/:id', updateFaq);
+router.delete('/admin/faqs/:id', deleteFaq);
 router.put('/admin/password', updatePassword);
 
 // We need an endpoint for cloudinary uploads

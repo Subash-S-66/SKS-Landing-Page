@@ -6,6 +6,7 @@ const Service = require('./src/models/Service');
 const Project = require('./src/models/Project');
 const Testimonial = require('./src/models/Testimonial');
 const Setting = require('./src/models/Setting');
+const Faq = require('./src/models/Faq');
 
 const seedData = async () => {
   try {
@@ -18,6 +19,7 @@ const seedData = async () => {
     await Project.deleteMany({});
     await Testimonial.deleteMany({});
     await Setting.deleteMany({});
+    await Faq.deleteMany({});
 
     // 1. Seed Admin User
     const salt = await bcrypt.genSalt(10);
@@ -84,6 +86,16 @@ const seedData = async () => {
     ];
     await Setting.insertMany(settings);
     console.log('Settings seeded');
+
+    // 6. Seed FAQs
+    const faqs = [
+      { question: 'What services do you offer?', answer: 'We offer a wide range of digital services including Business Websites, E-Commerce platforms, Online Booking Systems, and custom web applications. You can view all our services in the Services section.', order: 1, visible: true },
+      { question: 'How much does a website cost?', answer: 'Our pricing varies depending on the complexity of the project. A basic business website differs in price from a full e-commerce platform. Please contact us through the form for a customized free quote.', order: 2, visible: true },
+      { question: 'How long does it take to build?', answer: 'Most standard business websites take 2-4 weeks from start to finish. More complex projects like e-commerce or custom portals may take 6-12 weeks.', order: 3, visible: true },
+      { question: 'Do you provide hosting and maintenance?', answer: 'Yes! We offer complete packages that include hosting, security updates, and ongoing maintenance to keep your business running smoothly.', order: 4, visible: true }
+    ];
+    await Faq.insertMany(faqs);
+    console.log('FAQs seeded');
 
     console.log('Seeding complete!');
     process.exit(0);

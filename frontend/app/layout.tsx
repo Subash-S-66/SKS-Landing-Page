@@ -5,6 +5,7 @@ import Footer from "@/components/sections/Footer";
 import Navbar from "@/components/sections/Navbar";
 import AdminLoginModal from "@/components/admin/AdminLoginModal";
 import AdminTrigger from "@/components/admin/AdminTrigger";
+import Chatbot from "@/components/sections/Chatbot";
 import { headers } from 'next/headers';
 
 export const metadata: Metadata = {
@@ -51,6 +52,7 @@ export default async function RootLayout({
         </main>
         <Footer />
         <AdminTrigger />
+        <Chatbot />
         <AdminLoginModal />
         <DynamicThemeProvider initialSettings={settings} />
       </body>

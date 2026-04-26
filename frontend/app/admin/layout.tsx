@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useAppStore } from '@/lib/store';
 import { useRouter } from 'next/navigation';
-import { Home, List, Folder, MessageSquare, Settings, LogOut, Image as ImageIcon, Shield } from 'lucide-react';
+import { Home, List, Folder, MessageSquare, Settings, LogOut, Image as ImageIcon, Shield, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -51,6 +51,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { name: 'Services', href: '/admin/services', icon: List },
     { name: 'Portfolio', href: '/admin/portfolio', icon: Folder },
     { name: 'Testimonials', href: '/admin/testimonials', icon: ImageIcon },
+    { name: 'Chatbot FAQs', href: '/admin/faqs', icon: MessageCircle },
     { name: 'Settings', href: '/admin/settings', icon: Settings },
     { name: 'Account', href: '/admin/account', icon: Shield },
   ];
