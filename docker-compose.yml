@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - BACKEND_URL=http://backend:5000/api
+      - INTERNAL_API_TOKEN=${INTERNAL_API_TOKEN}
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - FRONTEND_URL=http://localhost:3000
+      - MONGODB_URI=mongodb://mongo:27017/sks-services
+      - JWT_SECRET=${JWT_SECRET}
+      - INTERNAL_API_TOKEN=${INTERNAL_API_TOKEN}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
